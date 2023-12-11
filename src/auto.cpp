@@ -155,7 +155,7 @@ void intakeSetState(int state) {
     }
 }
 
-void autonomousggFar() {
+void autonomousggSkill() {
     // Intake middle triball
     
     resetAngle(-45);

@@ -53,8 +53,8 @@ void autonomous(void) {
   CatapultMotors.setStopping(hold);
   LeftMotors.setStopping(brake);
   RightMotors.setStopping(brake);
-  //autonomousggFar();
-  autonomousggFar();
+  //autonomousggSkill();
+  autonomousggSkill();
   printf("Time: %.3f s\n", benchmark.value());
 }
 
