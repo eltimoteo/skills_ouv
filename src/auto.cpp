@@ -158,45 +158,13 @@ void intakeSetState(int state) {
 void autonomousggSkill() {
     // Intake middle triball
     
-    resetAngle(-45);
-    // Put down intake
-    throwMotor.spin(reverse, 100, pct);  
-    // Intake center-middle triball
-    IntakeMotor.spin(fwd, 100, pct);
-    driveForward(1.3 * tileLengthMm, -37, 100, 100);
-    throwMotor.stop(coast);
-    turnToAngle(-30, 0,100);
-    driveForward(1.4 * tileLengthMm, -30, 100, 100);
-    //driveForward(1.3*tileLengthMm, -30, 100, 100);
-    // Score loaded and center-right balls
-    turnToAngle(90, 0, 100);
-    intakeSetState(1);
-    driveForward(1.2 * tileLengthMm, 90, 100, 100, 1100);
-    // Intake center-low ball
-    driveForward(-0.4 * tileLengthMm, 90, 100, 100);
-    turnToAngle(233, 0, 100);
-    intakeSetState(-1);
-    driveForward(0.8 * tileLengthMm, 233, 100, 100);
-    // Go the match load zone
-    turnToAngle(123, 0, 100);
-    driveForward(2.05 * tileLengthMm, 145, 100, 100);
-    // Release loaded triball toward goal
-    turnToAngle(30, 0, 100);
-    intakeSetState(1);
-    task::sleep(300);
-    intakeSetState(0);
-    //push three triballs
-    turnToAngle(-110, 0, 100);
-    dig1.set(1);
-    driveForward(-0.4 * tileLengthMm, -130, 100, 60);
-    dig1.set(0);
-    driveForward(-1.5 * tileLengthMm, -180, 100, 16);
-    //driveForward(-0.3 * tileLengthMm, -180, 100, 100);
-    // turnToAngle(270, rotateRadiusMm * 2, 100);
-    // intakeSetState(-1);
-    // driveForward(0.83 * tileLengthMm, 270, 100, 100);
-    // turnToAngle(90, 0, 100);
-    // driveForward(1.2 * tileLengthMm, 90, 100, 100);
-    // turnToAngle(45, rotateRadiusMm*-1, 100);
+    resetAngle(-61);
+    driveForward(-1.3 * tileLengthMm, 0, 100, 28, 1100);
+   // driveForward(0.8 * tileLengthMm, -20, 100, 100);
+    driveForward(0.8 * tileLengthMm, -98, 100, 70);
+    driveForward(-0.4*tileLengthMm, -98, 100, 100);
+    throwMotor.spin(forward, 11, volt);
+     CatapultMotors.spinToPosition(370,deg,-100,rpm,true);
+
 }
 
