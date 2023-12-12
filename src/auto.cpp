@@ -158,13 +158,19 @@ void intakeSetState(int state) {
 void autonomousggSkill() {
     // Intake middle triball
     
-    resetAngle(-61);
-    driveForward(-1.3 * tileLengthMm, 0, 100, 28, 1100);
+    resetAngle(119);
+    driveForward(1.3 * tileLengthMm, 180, 100, 28, 1100);
    // driveForward(0.8 * tileLengthMm, -20, 100, 100);
-    driveForward(0.8 * tileLengthMm, -98, 100, 70);
-    driveForward(-0.4*tileLengthMm, -98, 100, 100);
-    throwMotor.spin(forward, 11, volt);
-     CatapultMotors.spinToPosition(370,deg,-100,rpm,true);
+    driveForward(-0.8 * tileLengthMm, 82, 100, 70);
+    driveForward(0.4*tileLengthMm, 82, 100, 100);
+    //throwMotor.spin(reverse, 11, volt);
+    CatapultMotors.spinToPosition(370,deg,-100,rpm,true);
+    //task::sleep(30000);
+    CatapultMotors.spinTo(30,deg,-100, rpm,true);
+    //throwMotor.stop(coast);
+    turnToAngle(132, 0, 90);
+    driveForward(-2.5*tileLengthMm, 90, 100, 70);
+    driveForward(-3*tileLengthMm, 90, 100, 100);
 
 }
 
