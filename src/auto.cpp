@@ -159,29 +159,32 @@ void autonomousggSkill() {
     // Intake middle triball
     
     resetAngle(115);
-    CatapultMotors.spinToPosition(370,deg,-100,rpm,true);
+    CatapultMotors.spinToPosition(370,deg,-100,rpm,true);//lift catapult to let the intake out
+    //push two alli-triballs
     driveForward(1.3 * tileLengthMm, 180, 100, 28, 1100);
     driveForward(-0.76 * tileLengthMm, 82, 100, 70);
-    driveForward(0.4*tileLengthMm, 82, 100, 100);
-    throwMotor.spin(reverse, 11, volt);
-    //task::sleep(30000);
-    CatapultMotors.spinTo(30,deg,-100, rpm,true);
+    driveForward(0.4*tileLengthMm, 82, 100, 100);//into matchload position
+    throwMotor.spin(reverse, 11, volt);//matchload
+    //task::sleep(30000);//30 secs
+    CatapultMotors.spinTo(30,deg,-100, rpm,true);//lift down, end
     throwMotor.stop(coast);
+    //part I - start pushing balls from the side (under elevation bar)
     turnToAngle(132, 0, 90);
-    driveForward(-2.35*tileLengthMm, 90, 100, 20);
-    driveForward(-2.5*tileLengthMm, 0, 100, 20);
+    driveForward(-2.15*tileLengthMm, 90, 100, 15);
+    driveForward(-2.9*tileLengthMm, 0, 100, 9);
     driveForward(0.5*tileLengthMm, 0, 100, 100);
     driveForward(-0.85*tileLengthMm, 0, 100, 100);
-    driveForward(0.5*tileLengthMm, 0, 100, 100);
-    turnToAngle(-48, 0, 100);
-    //everything after this is unsure, pure imagination
+    driveForward(0.73*tileLengthMm, 0, 100, 100);
+    //part II - middle triballs
     dig1.set(1);
-    driveForward(-0.8*tileLengthMm, 0, 60, 10);
-    driveForward(-0.8*tileLengthMm, 90, 100, 30);
-    driveForward(0.3*tileLengthMm, 90, 100, 100);
-    driveForward(-0.3*tileLengthMm, 90, 100, 100);
+    driveForward(-1.6*tileLengthMm, -63, 50, 100);
+    driveForward(-1*tileLengthMm, 0, 60, 10);
+    turnToAngle(90, 0, 100);
+    driveForward(-1*tileLengthMm, 90, 100, 30);
+    driveForward(0.5*tileLengthMm, 90, 100, 100);
+    driveForward(-0.5*tileLengthMm, 90, 100, 100);
     driveForward(0.8*tileLengthMm, 180, 60, 10);
-    
+  
 
 
 /*Ree
@@ -195,13 +198,13 @@ void autonomousggSkill() {
     task::sleep(32000);
     CatapultMotors.spinToPosition(-70,deg,-100,rpm,true);
     throwMotor.stop(coast);
-    driveForward(-0.8 * tileLengthMm, 120, 100, 100);
-    driveForward(-2 * tileLengthMm, 90, 100, 100);
-    driveForward(-0.8 * tileLengthMm, 0, 100, 100);
-    driveForward( 0.5 * tileLengthMm, 100, 70, 100);
-    driveForward(0.3 * tileLengthMm, 90, 100, 100);
+    driveForward(-1 * tileLengthMm, 120, 100, 100);
+    driveForward(-2.5 * tileLengthMm, 90, 100, 100);
+    driveForward(-1 * tileLengthMm, 0, 100, 100);
+    driveForward( 0.5 * tileLengthMm, 100, 70, 60);
+    driveForward(0.7 * tileLengthMm, 90, 100, 100);
     dig1.set(1);
-    driveForward(-0.5 * tileLengthMm, 90, 100, 100);
+    driveForward(-1 * tileLengthMm, 90, 100, 100);
     dig1.set(0);
     driveForward( 1.5 * tileLengthMm, 280,  100, 60);
     driveForward(0.7 * tileLengthMm, 270, 100, 100);
