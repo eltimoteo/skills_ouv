@@ -25,7 +25,7 @@ void driveForward(double distanceMm, double targetangle, double velocityPct, dou
     timer timeout;
     timeout.reset();
     // Set PID
-    PIDClass drivePid(13.5, 0, 0, 0.2);//10.0 is feasible
+    PIDClass drivePid(13.5, 0, 0, 0.25);//10.0 is feasible
     PIDClass rotatePid(0.30, 0.0005, 0, 3);
     // Calculate motor revolutions
     double motorRev = distanceMm / motorRevMm;
@@ -157,8 +157,8 @@ void intakeSetState(int state) {
 
 void autonomousggSkill() {
     // Intake middle triball
-    
-    resetAngle(115);
+    //tim skills ver1.0
+    /*resetAngle(115);
     CatapultMotors.spinToPosition(370,deg,-100,rpm,true);//lift catapult to let the intake out
     //push two alli-triballs
     driveForward(1.3 * tileLengthMm, 180, 100, 28, 1100);
@@ -172,9 +172,11 @@ void autonomousggSkill() {
     turnToAngle(132, 0, 90);
     driveForward(-2.15*tileLengthMm, 90, 100, 15);
     driveForward(-2.9*tileLengthMm, 0, 100, 9);
+    turnToAngle(0, 0, 100);
+    driveForward(-0.5*tileLengthMm, 0, 100, 100);
     driveForward(0.5*tileLengthMm, 0, 100, 100);
-    driveForward(-0.85*tileLengthMm, 0, 100, 100);
-    driveForward(0.73*tileLengthMm, 0, 100, 100);
+    driveForward(-0.5*tileLengthMm, 0, 100, 100);
+    driveForward(-2*tileLengthMm, 0, 100, 100);
     //part II - middle triballs
     dig1.set(1);
     driveForward(-1.6*tileLengthMm, -63, 50, 100);
@@ -184,8 +186,42 @@ void autonomousggSkill() {
     driveForward(0.5*tileLengthMm, 90, 100, 100);
     driveForward(-0.5*tileLengthMm, 90, 100, 100);
     driveForward(0.8*tileLengthMm, 180, 60, 10);
-  
-
+    */
+    //tim  skills vers2.0
+    resetAngle(-65);
+    CatapultMotors.spinToPosition(370,deg,-100,rpm,true);//lift catapult to let the intake out
+    //push two alli-triballs
+    driveForward(-1.3 * tileLengthMm, 0, 100, 28, 1100);
+    driveForward(0.76 * tileLengthMm, -100, 100, 70);
+    driveForward(-0.28*tileLengthMm, -100, 100, 100);//into matchload position
+    throwMotor.spin(reverse, 11, volt);//matchload
+    //task::sleep(30000);//30 secs
+    CatapultMotors.spinTo(30,deg,-100, rpm,true);//lift down, end
+    throwMotor.stop(coast);
+    //part I - start pushing balls from the side (under elevation bar)
+    turnToAngle(-48, 0, 100);
+    driveForward(2.25*tileLengthMm, -90, 100, 15);
+    driveForward(2.53*tileLengthMm, -180, 87.5, 5);
+    driveForward(0.43*tileLengthMm, -180, 100, 100);
+    driveForward(-0.26*tileLengthMm, -180, 100, 100);
+    driveForward(0.55*tileLengthMm, -180, 100, 100);
+    driveForward(-0.39*tileLengthMm, -135, 100, 100);
+    //part II - middle triballs
+    dig1.set(1);
+    driveForward(-1.71*tileLengthMm, -61, 30, 100);
+    driveForward(-1.5*tileLengthMm, 90, 45, 45);//first push with wings
+    dig1.set(0);
+    driveForward(1.5*tileLengthMm, 110, 70, 45);
+    dig1.set(1);
+    driveForward(-1.5*tileLengthMm, 80, 90, 45);//second push with wings
+    driveForward(1.5*tileLengthMm, 110, 70, 45);
+    driveForward(-1.71*tileLengthMm, 50, 45, 100);
+    //part III
+    dig1.set(0);
+    driveForward(-0.34*tileLengthMm, 137, 100, 100);
+    driveForward(-0.55*tileLengthMm, 180, 100, 20);
+    driveForward(0.32*tileLengthMm, 180, 100, 100);
+    driveForward(0.32*tileLengthMm, 180, 100, 100);
 
 /*Ree
     resetAngle(-61);
