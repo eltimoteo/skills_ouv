@@ -184,7 +184,30 @@ void autonomousggSkill() {
     
 
 
+/*Ree
+    resetAngle(-61);
+    driveForward(-1.3 * tileLengthMm, 0, 100, 28, 1100);
+   // driveForward(0.8 * tileLengthMm, -20, 100, 100);
+    driveForward(1.1 * tileLengthMm, -40, 100, 70);
+    driveForward(0.4*tileLengthMm, 82, 100, 100);
+    throwMotor.spin(reverse, 11, volt);
+    CatapultMotors.spinToPosition(370,deg,-100,rpm,true);
+    task::sleep(32000);
+    CatapultMotors.spinToPosition(-70,deg,-100,rpm,true);
+    throwMotor.stop(coast);
+    driveForward(-0.8 * tileLengthMm, 120, 100, 100);
+    driveForward(-2 * tileLengthMm, 90, 100, 100);
+    driveForward(-0.8 * tileLengthMm, 0, 100, 100);
+    driveForward( 0.5 * tileLengthMm, 100, 70, 100);
+    driveForward(0.3 * tileLengthMm, 90, 100, 100);
+    dig1.set(1);
+    driveForward(-0.5 * tileLengthMm, 90, 100, 100);
+    dig1.set(0);
+    driveForward( 1.5 * tileLengthMm, 280,  100, 60);
+    driveForward(0.7 * tileLengthMm, 270, 100, 100);
+    driveForward(-0.7 * tileLengthMm, 270, 100, 100);
 
+*/
 
 }
 
