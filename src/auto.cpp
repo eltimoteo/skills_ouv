@@ -193,35 +193,34 @@ void autonomousggSkill() {
     //push two alli-triballs
     driveForward(-1.3 * tileLengthMm, 0, 100, 28, 1100);
     driveForward(0.76 * tileLengthMm, -100, 100, 70);
-    driveForward(-0.28*tileLengthMm, -100, 100, 100);//into matchload position
-    throwMotor.spin(reverse, 11, volt);//matchload
-    //task::sleep(30000);//30 secs
+    driveForward(-0.2875*tileLengthMm, -100, 100, 100);//into matchload position
+    throwMotor.spin(forward, 11, volt);//matchload
+    task::sleep(30000);//30 secs
     CatapultMotors.spinTo(30,deg,-100, rpm,true);//lift down, end
     throwMotor.stop(coast);
     //part I - start pushing balls from the side (under elevation bar)
     turnToAngle(-48, 0, 100);
-    driveForward(2.25*tileLengthMm, -90, 100, 15);
+    driveForward(2.21*tileLengthMm, -90, 100, 15);
     driveForward(2.53*tileLengthMm, -180, 87.5, 5);
-    driveForward(0.43*tileLengthMm, -180, 100, 100);
-    driveForward(-0.26*tileLengthMm, -180, 100, 100);
+    driveForward(0.52*tileLengthMm, -180, 100, 100);
+    driveForward(-0.32*tileLengthMm, -180, 100, 100);
     driveForward(0.55*tileLengthMm, -180, 100, 100);
-    driveForward(-0.39*tileLengthMm, -135, 100, 100);
+    driveForward(-0.39*tileLengthMm, -142, 100, 100);
     //part II - middle triballs
     dig1.set(1);
-    driveForward(-1.71*tileLengthMm, -61, 30, 100);
-    driveForward(-1.5*tileLengthMm, 90, 45, 45);//first push with wings
+    driveForward(-1.7*tileLengthMm, -72, 30, 100);
+    driveForward(-1.9*tileLengthMm, 90, 40, 30);//first push with wings
     dig1.set(0);
-    driveForward(1.5*tileLengthMm, 110, 70, 45);
+    driveForward(1.3*tileLengthMm, 120, 45, 45);
     dig1.set(1);
-    driveForward(-1.5*tileLengthMm, 80, 90, 45);//second push with wings
-    driveForward(1.5*tileLengthMm, 110, 70, 45);
-    driveForward(-1.71*tileLengthMm, 50, 45, 100);
+    driveForward(-1.4*tileLengthMm, 80, 90, 30);//second push with wings
+    driveForward(1.5*tileLengthMm, 110, 45, 45);
+    driveForward(-2*tileLengthMm, 30, 45, 40);
     //part III
     dig1.set(0);
-    driveForward(-0.34*tileLengthMm, 137, 100, 100);
-    driveForward(-0.55*tileLengthMm, 180, 100, 20);
+    driveForward(-1.5*tileLengthMm, 180, 100, 60);
     driveForward(0.32*tileLengthMm, 180, 100, 100);
-    driveForward(0.32*tileLengthMm, 180, 100, 100);
+    driveForward(-0.4*tileLengthMm, 170, 100, 90);
 
 /*Ree
     resetAngle(-61);
