@@ -55,6 +55,7 @@ void autonomous(void) {
   RightMotors.setStopping(brake);
   //autonomousggSkill();
   autonomousggSkill();
+  // autonTest();
   printf("Time: %.3f s\n", benchmark.value());
 }
 

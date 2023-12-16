@@ -41,7 +41,7 @@ void turnDown() {
   // CatapultMotors.spinToPosition(0,deg,-100,rpm,false);
   // task::sleep(1000);
   // CatapultMotors.stop(hold);
-  CatapultMotors.spinTo(30,deg,-100, rpm,true);
+  CatapultMotors.spinTo(60,deg,-100, rpm,true);
   
   CatapultMotors.stop(hold);
   

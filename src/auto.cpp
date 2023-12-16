@@ -25,55 +25,54 @@ void driveForward(double distanceMm, double targetangle, double velocityPct, dou
     timer timeout;
     timeout.reset();
     // Set PID
-    PIDClass drivePid(13.5, 0, 0, 0.25);//10.0 is feasible
-    PIDClass rotatePid(0.30, 0.0005, 0, 3);
+    PIDClass drivePid(37, 0, 0, 0.25);//10.0 is feasible
+    PIDClass rotatePid(0.88, 0.000, 0, 3);
     // Calculate motor revolutions
     double motorRev = distanceMm / motorRevMm;
     velocityPct = fabs(velocityPct);
-    double maxVolt = fmin(12.0, fmax(-12.0, velocityPct / 100.0 * 12.0));
+    double maxLinearPct = velocityPct;
     turnVelocityPct = fabs(turnVelocityPct);
-    double maxTurnVolt = fmin(12.0, fmax(-12.0, turnVelocityPct / 100.0 * 12.0));
+    double maxTurnPct = turnVelocityPct;
     double initLeft = LeftMotors.position(rev);
     double initRight = RightMotors.position(rev);
     // task::sleep(100);
     // Spin until done or until timeout
     while (!drivePid.isSettled() && timeout.value() * 1000 < timeoutMs) {
+        // Get velocity from PID
         double currentLRev = LeftMotors.position(rev) - initLeft;
         double currentRRev = RightMotors.position(rev) - initRight;
         double currentRev = (currentLRev + currentRRev) / 2;
         double error = motorRev - currentRev;
         drivePid.computeError(error);
-        double newLinearVelocityVolt = drivePid.getValue();
+        double newLinearVelocityPct = drivePid.getValue();
 
         double rotateError = targetangle - MJ.rotation();
-        // Get velocity from PID
         rotatePid.computeError(rotateError);
-        double newAngularVelocityVolt = rotatePid.getValue();
+        double newAngularVelocityPct = rotatePid.getValue();
         
         // if (newVelocityPct > velocityPct) newVelocityPct = velocityPct;
         // else if (newVelocityPct < -velocityPct) newVelocityPct = -velocityPct;
-        newLinearVelocityVolt = fmin(maxVolt, fmax(-maxVolt, newLinearVelocityVolt));
-        newAngularVelocityVolt = fmin(maxTurnVolt, fmax(-maxTurnVolt, newAngularVelocityVolt));
+        newLinearVelocityPct = fmin(maxLinearPct, fmax(-maxLinearPct, newLinearVelocityPct));
+        newAngularVelocityPct = fmin(maxTurnPct, fmax(-maxTurnPct, newAngularVelocityPct));
 
-        double leftVelocityVolt = newLinearVelocityVolt + newAngularVelocityVolt;
-        double rightVelocityVolt = newLinearVelocityVolt - newAngularVelocityVolt;
+        double leftVelocityPct = newLinearVelocityPct + newAngularVelocityPct;
+        double rightVelocityPct = newLinearVelocityPct - newAngularVelocityPct;
 
         // Scale
-        double scaleFactor = 12.0 / fmax(12.0, fmax(fabs(leftVelocityVolt), fabs(rightVelocityVolt)));
-        leftVelocityVolt *= scaleFactor;
-        rightVelocityVolt *= scaleFactor;
+        double scaleFactor = 100.0 / fmax(100.0, fmax(fabs(leftVelocityPct), fabs(rightVelocityPct)));
+        leftVelocityPct *= scaleFactor;
+        rightVelocityPct *= scaleFactor;
 
-        printf("Error: %.3f, velocity: %.3f\n", error, newLinearVelocityVolt);
+        printf("Error: %.3f, velocity: %.3f, terror: %.3f, tvel: %.3f\n", error, newLinearVelocityPct, rotateError, newAngularVelocityPct);
         
-        LeftMotors.spin(fwd, leftVelocityVolt, volt);
-        RightMotors.spin(fwd, rightVelocityVolt, volt);
+        LeftMotors.spin(fwd, leftVelocityPct, pct);
+        RightMotors.spin(fwd, rightVelocityPct, pct);
         task::sleep(10);
     }
     // Stop
     LeftMotors.stop(brake);
     RightMotors.stop(brake);
 }
-
 
 /// @param centerOffsetMm The offset of center of rotation. + for right, - for left.
 void turnToAngle(double degree, double centerOffsetMm, double meanVelocityPct, double timeoutMs = 3000) {
@@ -188,27 +187,27 @@ void autonomousggSkill() {
     driveForward(0.8*tileLengthMm, 180, 60, 10);
     */
     //tim  skills vers2.0
-    resetAngle(-65);
-    CatapultMotors.spinToPosition(370,deg,-100,rpm,true);//lift catapult to let the intake out
+    resetAngle(-48);
+    turnUp();//lift catapult to let the intake out
     //push two alli-triballs
-    driveForward(-1.3 * tileLengthMm, 0, 100, 28, 1100);
-    driveForward(0.76 * tileLengthMm, -100, 100, 70);
-    driveForward(-0.2875*tileLengthMm, -100, 100, 100);//into matchload position
-    throwMotor.spin(forward, 11, volt);//matchload
-    task::sleep(30000);//30 secs
-    CatapultMotors.spinTo(30,deg,-100, rpm,true);//lift down, end
+    driveForward(-1.5 * tileLengthMm, 0, 100, 28, 1100);
+    driveForward(0.9 * tileLengthMm, -95, 100, 70);
+    driveForward(-0.5*tileLengthMm, -95, 100, 100);//into matchload position
+    turnDown();//lift down, end
+    throwMotor.spin(reverse, 12, volt);//matchload
+    //task::sleep(30000);//30 secs
     throwMotor.stop(coast);
     //part I - start pushing balls from the side (under elevation bar)
     turnToAngle(-48, 0, 100);
     driveForward(2.21*tileLengthMm, -90, 100, 15);
-    driveForward(2.53*tileLengthMm, -180, 87.5, 5);
-    driveForward(0.52*tileLengthMm, -180, 100, 100);
+    driveForward(2.53*tileLengthMm, -180, 90, 5);
+    driveForward(1.0*tileLengthMm, -180, 100, 100, 1000);
     driveForward(-0.32*tileLengthMm, -180, 100, 100);
-    driveForward(0.55*tileLengthMm, -180, 100, 100);
+    driveForward(1.0*tileLengthMm, -180, 100, 100, 1000);
     driveForward(-0.39*tileLengthMm, -142, 100, 100);
     //part II - middle triballs
     dig1.set(1);
-    driveForward(-1.7*tileLengthMm, -72, 30, 100);
+    driveForward(-1.6*tileLengthMm, -72, 30, 90);
     driveForward(-1.9*tileLengthMm, 90, 40, 30);//first push with wings
     dig1.set(0);
     driveForward(1.3*tileLengthMm, 120, 45, 45);
@@ -221,6 +220,35 @@ void autonomousggSkill() {
     driveForward(-1.5*tileLengthMm, 180, 100, 60);
     driveForward(0.32*tileLengthMm, 180, 100, 100);
     driveForward(-0.4*tileLengthMm, 170, 100, 90);
+    /*dig1.set(0);
+    //part I - start pushing balls from the side (under elevation bar)
+    turnToAngle(-48, 0, 100);
+    driveForward(-2.5*tileLengthMm, -90, 100, 15);
+    driveForward(-1.8*tileLengthMm, -140, 80, 5);
+    driveForward(-1.3 * tileLengthMm, -180, 60, 60);
+    driveForward(0.32*tileLengthMm, -180, 100, 100);
+    driveForward(-0.38*tileLengthMm, -180, 100, 100);
+    driveForward(0.3*tileLengthMm, -180, 100, 100);
+    turnToAngle(-48, 0, 100);
+    driveForward(1.8 * tileLengthMm, -35, 100, 100);
+    turnToAngle(-90, 0, 100);
+    //part II - middle triballs
+    dig1.set(1);
+    driveForward(-1.9*tileLengthMm, -90, 70, 40);//first push with wings
+    dig1.set(0);
+    driveForward(1.7 * tileLengthMm, -80, 45, 5);
+    turnToAngle(-90, -rotateRadiusMm, 100);
+    dig1.set(1);
+    driveForward(-1.9*tileLengthMm, -90, 90, 30);//second push with wings
+    dig1.set(0);
+    driveForward(1.5*tileLengthMm, -90, 45, 45);
+    dig1.set(1);
+    driveForward(-1.7*tileLengthMm, -90, 45, 40);
+    //part III
+    dig1.set(0);
+    driveForward(-1.5*tileLengthMm, 180, 100, 60);
+    driveForward(0.32*tileLengthMm, 180, 100, 100);
+    driveForward(-0.4*tileLengthMm, 170, 100, 90);*/
 
 /*Ree
     resetAngle(-61);
@@ -249,3 +277,14 @@ void autonomousggSkill() {
 
 }
 
+
+void autonTest() {
+    resetAngle(0);
+    driveForward(1 * tileLengthMm, 90.0, 100.0, 100.0);
+    // driveForward(1 * tileLengthMm, 0, 100.0, 100.0);
+    // driveForward(1 * tileLengthMm, 0, 100.0, 100.0);
+    // driveForward(-1 * tileLengthMm, 0, 100.0, 100.0);
+    // driveForward(-1 * tileLengthMm, 0, 100.0, 100.0);
+    // driveForward(2 * tileLengthMm, 0, 100.0, 100.0);
+    // driveForward(-2 * tileLengthMm, 0, 100.0, 100.0);
+}
