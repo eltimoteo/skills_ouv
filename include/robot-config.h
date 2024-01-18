@@ -8,9 +8,10 @@ extern motor_group LeftMotors;
 extern motor IntakeMotor;
 extern motor_group CatapultMotors;
 extern controller Controller1;
-extern digital_out dig1;
-extern digital_out dig2;
-extern motor throwMotor;
+extern digital_out wings;
+extern digital_out hang;
+extern digital_out blocker;
+extern motor puncherMotor;
 extern inertial MJ;
 
 /**

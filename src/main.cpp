@@ -22,7 +22,7 @@
 #include "botDrive.h"
 #include "circularmotion.h"
 #include "pneumatics.h"
-#include "throw.h"
+#include "puncher.h"
 
 #include "auto.h"
 
@@ -30,47 +30,45 @@ competition Competition;
 
 double boom = 0;
 int count = 0;
-bool gay = false;
+
 
 void pre_auton(void) {
   // Initializing Robot Configuration. DO NOT REMOVE!
   //vexcodeInit();
+  task::sleep(1100);
   MJ.startCalibration();
-  while(MJ.isCalibrating()){
-    task::sleep(10);
+  while (MJ.isCalibrating())
+  {
+    task::sleep(100);
   }
 
-  dig2.set(0);
+
   CatapultMotors.stop(hold);
 }
 
 bool alreadyResetCata = false;
 void autonomous(void) {
-  gay = true;
   // resetCatapult();
   // alreadyResetCata = true;
-  timer benchmark;
   CatapultMotors.setStopping(hold);
   LeftMotors.setStopping(brake);
   RightMotors.setStopping(brake);
-  //autonomousggSkill();
-  autonomousggSkill();
-  // autonTest();
-  printf("Time: %.3f s\n", benchmark.value());
+  //autonomousggFar();
+  autonomousggClose();
 }
 
 void usercontrol(void) {
   CatapultMotors.spinToPosition(10,deg,-100,rpm,false);
-  throwMotor.setStopping(coast);
+  puncherMotor.setStopping(coast);
   LeftMotors.setStopping(brake);
   RightMotors.setStopping(brake);
   CatapultMotors.setStopping(hold);
-  Brain.resetTimer();
+ Brain.resetTimer();
   
 
-  keybindCatapult();
+ 
   keybindPneumatics();
-  keybindThrow();
+  keybindPuncher();
 
   while (true) {
     ggDriver();
@@ -83,24 +81,12 @@ void usercontrol(void) {
     else {
       IntakeMotor.stop(hold);
     }
-    if(gay==true){
-      if( Brain.timer(timeUnits::sec) > 60 && Brain.timer(timeUnits::sec)<75) {
-        Controller1.rumble("--. .- -.--");//print "GAY" with morse code
-    
-      }
-      else if( Brain.timer(timeUnits::sec) >80 ){
-        Controller1.rumble(".- ... - .-. --- / .. ... / --. .- -.--");//Print "Astro is Gay" with morse code 
-    }
-  }
-    
-   task::sleep(30); 
-} 
     
   }
-
-
+}
 
 int main() {
+  //group 15 is the angrybird.io
   //group 13 is dy left
   //group 11 is dy right
 

@@ -14,7 +14,7 @@ void resetCatapult()
 void keybindCatapult() {
   Controller1.ButtonL1.pressed(turnUp);
   Controller1.ButtonL2.pressed(turnDown);
-  Controller1.ButtonDown.pressed(Lockdown);
+
 }
 
 bool catapultDebounce = false;
@@ -27,7 +27,7 @@ void turnUp()
   // CatapultMotors.spinTo(150,deg,false);
   // task::sleep(1000);
   // CatapultMotors.stop(hold);
-  CatapultMotors.spinToPosition(370,deg,-100,rpm,true);
+  CatapultMotors.spinToPosition(350,deg,-100,rpm,true);
   
   CatapultMotors.stop(hold);
 
@@ -41,23 +41,8 @@ void turnDown() {
   // CatapultMotors.spinToPosition(0,deg,-100,rpm,false);
   // task::sleep(1000);
   // CatapultMotors.stop(hold);
-  CatapultMotors.spinTo(60,deg,-100, rpm,true);
+  CatapultMotors.spinToPosition(-40,deg,-100, rpm,true);
   
-  CatapultMotors.stop(hold);
-  
-  
-
-}
-
-void Lockdown() {
- timer timeout;
- printf("Test turn down");
-  
-  // CatapultMotors.spinToPosition(0,deg,-100,rpm,false);
-  // task::sleep(1000);
-  // CatapultMotors.stop(hold);
-  CatapultMotors.spinTo(30,deg,-100, rpm,false);
-  task::sleep(1000);
   CatapultMotors.stop(hold);
   
   

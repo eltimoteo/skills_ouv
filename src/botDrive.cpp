@@ -13,6 +13,8 @@ void ggDriver() {
     double scale = 100.0 / fmax(100.0, fmax(fabs(leftPct), fabs(rightPct)));
     leftPct *= scale;
     rightPct *= scale;
+    double leftVolt = leftPct * 12 / 100;
+    double rightVolt = rightPct * 12 / 100;
     
     if(fabs(fabs(leftPct)- fabs(rightPct)>40)){
         LeftMotors.setStopping(hold);
@@ -26,6 +28,6 @@ void ggDriver() {
     
     // printf("L: %.3f, R: %.3f\n", LeftMotors.velocity(pct), RightMotors.velocity(pct));
     
-    RightMotors.spin(forward, (rightPct), pct);
-    LeftMotors.spin(forward, (leftPct), pct);
+    RightMotors.spin(forward, (rightVolt), volt);
+    LeftMotors.spin(forward, (leftVolt), volt);
 }
