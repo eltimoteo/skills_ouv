@@ -201,46 +201,46 @@ void resetAngle(double rotation){
     MJ.setRotation(rotation, deg);
 }
 
-void autonomousggSkill() {
-    // //tim  skills vers2.0
-    // resetAngle(-48);
-    // turnUp();//lift catapult to let the intake out
-    // //push two alli-triballs
-    // driveForward(-1.5 * tileLengthMm, 0, 100, 28, 1100);
-    // driveForward(0.9 * tileLengthMm, -95, 100, 70);
-    // driveForward(-0.7*tileLengthMm, -95, 100, 100);//into matchload position
-    // turnDown();//lift down, end
-    // throwMotor.spin(forward, 12, volt);//matchload
-    // task::sleep(30000);//30 secs
-    // throwMotor.stop(coast);
-    // //part I - start pushing balls from the side (under elevation bar)
-    // turnToAngle(-48, 0, 100);
-    // driveForward(2.21*tileLengthMm, -90, 100, 15);
-    // driveForward(2.53*tileLengthMm, -180, 90, 5);
-    // driveForward(1.0*tileLengthMm, -180, 100, 100, 1000);
-    // driveForward(-0.32*tileLengthMm, -180, 100, 100);
-    // driveForward(1.0*tileLengthMm, -180, 100, 100, 1000);
-    // driveForward(-0.39*tileLengthMm, -142, 100, 100);
-    // //part II - middle triballs
-    // dig1.set(1);
-    // driveForward(-1.6*tileLengthMm, -72, 30, 90);
-    // driveForward(-1.7*tileLengthMm, 90, 40, 30);//first push with wings
-    // dig1.set(0);
-    // driveForward(1.3*tileLengthMm, 120, 45, 45);
-    // dig1.set(1);
-    // driveForward(-1.4*tileLengthMm, 80, 90, 30);//second push with wings
-    // driveForward(1.5*tileLengthMm, 110, 45, 45);
-    // driveForward(-2*tileLengthMm, 30, 45, 40);
-    // //part III
-    // dig1.set(0);
-    // driveForward(-1.5*tileLengthMm, 180, 100, 60);
-    // driveForward(0.32*tileLengthMm, 180, 100, 100);
-    // driveForward(-0.4*tileLengthMm, 170, 100, 90);
-    //tim skills 3.0 (w/ new bot)
-    resetAngle(131);
+
+
+void autonomousggClose() {
+
+    //close 1.0 with one center triball/
+    //reset angle for inertial
+    resetAngle(-50);
+    //lower intake 
     puncherMotor.spin(forward,12, volt);
     task::sleep(500);
     puncherMotor.stop(coast);
-    driveForward(1, 1, 1, 1);
+    driveForward(-1 * tileLengthMm, 0, 100, 27);
+    driveForward(1 * tileLengthMm, -50, 100, 93);
+    blocker.set(1);
+    turnToAngle(-157,0,100);
+    blocker.set(0);
+    intakeSetState(-1);
+    driveForward(1.5 * tileLengthMm, -157, 100, 100);
+    driveForward(-1.73 * tileLengthMm, -160, 100, 35);
+    turnToAngle(-90, 0, 100);
+    intakeSetState(1);
+    driveForward(1.2 * tileLengthMm, -90, 100, 100);
+
+    //wings.set(1);
+    ////intakeSetState(-1);
+    //driveForward(0.4 * tileLengthMm, 0, 100, 100);
+    ////driveForward(2.5 * tileLengthMm, -160, 85, 100);
+
+    // //close 2.0 no center triball//
+    // //reset angle for inertial
+    // resetAngle(-50);
+    // //lower intake 
+    // driveForward(-1 * tileLengthMm, 0, 100, 27);
+    // driveForward(0.4 * tileLengthMm, -50, 50, 100);
+    // wings.set(1);
+    // driveForward(0.8 * tileLengthMm, -90, 20, 100);
+    // wings.set(0);
+    // //driveForward(2 * tileLengthMm, -90, 50, 100);
+    // puncherMotor.spin(forward,12, volt);
+    // task::sleep(500);
+    // puncherMotor.stop(coast);
 
 }
