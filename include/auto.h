@@ -1,3 +1,3 @@
 #pragma once
 
-void autonomousggClose();
+void autonomousggSkill();

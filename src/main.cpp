@@ -54,7 +54,7 @@ void autonomous(void) {
   LeftMotors.setStopping(brake);
   RightMotors.setStopping(brake);
   //autonomousggFar();
-  autonomousggClose();
+  autonomousggSkill();
 }
 
 void usercontrol(void) {
