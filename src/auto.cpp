@@ -82,6 +82,8 @@ void turnToAngle(double degree, double centerOffsetMm, double meanVelocityPct, d
     double motorRevRight = arcLengthRight / motorRevMm;
     // Set PID
     PIDClass rotatePid(0.80, 0.0005, 0, 0.7);
+    //PIDClass rotatePid(0.6, 0, 0, 7.5);
+
     // Variables for PID
     meanVelocityPct = fabs(meanVelocityPct);
     // double maxVolt = fmin(12.0, fmax(-12.0, meanVelocityPct / 100.0 * 12.0));
@@ -187,11 +189,11 @@ void turnAngle(double degree, char  stop,  double centerOffsetMm, double meanVel
     
 }
 
-void intakeSetState(int state) {
+void intakeSetState(int state, double gg) {
     if (state == 1) {
-        IntakeMotor.spin(reverse, 50, pct);
+        IntakeMotor.spin(reverse, gg, volt);
     } else if (state == -1) {
-        IntakeMotor.spin(fwd, 100, pct);
+        IntakeMotor.spin(fwd, gg, volt);
     } else {
         IntakeMotor.stop(coast);
     }
@@ -202,80 +204,56 @@ void resetAngle(double rotation){
 }
 
 
-
 void autonomousggSkill() {
-    // //tim  skills vers2.0
-    // resetAngle(-48);
-    // turnUp();//lift catapult to let the intake out
-    // //push two alli-triballs
-    // driveForward(-1.5 * tileLengthMm, 0, 100, 28, 1100);
-    // driveForward(0.9 * tileLengthMm, -95, 100, 70);
-    // driveForward(-0.7*tileLengthMm, -95, 100, 100);//into matchload position
-    // turnDown();//lift down, end
-    // throwMotor.spin(forward, 12, volt);//matchload
-    // task::sleep(30000);//30 secs
-    // throwMotor.stop(coast);
-    // //part I - start pushing balls from the side (under elevation bar)
-    // turnToAngle(-48, 0, 100);
-    // driveForward(2.21*tileLengthMm, -90, 100, 15);
-    // driveForward(2.53*tileLengthMm, -180, 90, 5);
-    // driveForward(1.0*tileLengthMm, -180, 100, 100, 1000);
-    // driveForward(-0.32*tileLengthMm, -180, 100, 100);
-    // driveForward(1.0*tileLengthMm, -180, 100, 100, 1000);
-    // driveForward(-0.39*tileLengthMm, -142, 100, 100);
-    // //part II - middle triballs
-    // dig1.set(1);
-    // driveForward(-1.6*tileLengthMm, -72, 30, 90);
-    // driveForward(-1.7*tileLengthMm, 90, 40, 30);//first push with wings
-    // dig1.set(0);
-    // driveForward(1.3*tileLengthMm, 120, 45, 45);
-    // dig1.set(1);
-    // driveForward(-1.4*tileLengthMm, 80, 90, 30);//second push with wings
-    // driveForward(1.5*tileLengthMm, 110, 45, 45);
-    // driveForward(-2*tileLengthMm, 30, 45, 40);
-    // //part III
-    // dig1.set(0);
-    // driveForward(-1.5*tileLengthMm, 180, 100, 60);
-    // driveForward(0.32*tileLengthMm, 180, 100, 100);
-    // driveForward(-0.4*tileLengthMm, 170, 100, 90);
     
     //tim skills 3.0 (w/ new bot)
     resetAngle(131);
     puncherMotor.spin(forward,12, volt);
     task::sleep(500);
     puncherMotor.stop(coast);
+    intakeSetState(1, 7);
     driveForward(1.33 * tileLengthMm, 180, 100, 28, 1100);
-    driveForward(-0.7 * tileLengthMm, 70, 100, 93);
-    driveForward(0.38*tileLengthMm, 70, 100, 100);
+    driveForward(-0.7 * tileLengthMm, 77.5, 100, 97);
+    driveForward(0.38*tileLengthMm, 77.5, 100, 100);
     puncherMotor.spin(forward,12, volt);
+    //task::sleep(28000);
     task::sleep(1000);
     puncherMotor.stop(coast);
-    turnToAngle(131, 0, 100);
+    turnToAngle(131, 0, 100); 
     driveForward(-2.21*tileLengthMm, 90, 100, 20);
     driveForward(-1.1*tileLengthMm, 0, 90, 10);
-    task::sleep(100);
-    blocker.set(1);
+    //task::sleep(100);
+    //blocker.set(1);
     driveForward(-1.52*tileLengthMm, 0, 100, 45);
-    blocker.set(0);
+    //blocker.set(0);
     driveForward(0.32*tileLengthMm, 45, 100, 50);
     driveForward(-1.0*tileLengthMm, 0, 100, 60, 1000);
-    driveForward(0.39*tileLengthMm, 38, 100, 100);
+
+    driveForward(0.405*tileLengthMm, 38, 100, 100);
+    driveForward(0.9 *tileLengthMm, 111, 30, 90);
     wings.set(1);
-    driveForward(1.1*tileLengthMm, 111, 30, 90);
-    driveForward(1.3*tileLengthMm, 270, 40, 30);//first push with wings
-    driveForward(0.6*tileLengthMm, 270, 100, 100, 2000);
+    driveForward(0.35*tileLengthMm, 111, 30, 90);
+    driveForward(1.3*tileLengthMm, 270, 40, 30);//first push with front wings
+    driveForward(-0.2*tileLengthMm, 270, 100, 100);
+    driveForward(0.8*tileLengthMm, 270, 100, 100);
     wings.set(0);
-    blocker.set(1);
-    driveForward(-2.5*tileLengthMm, 450, 45, 30, 1000);
-    blocker.set(0);
+    driveForward(-1.5*tileLengthMm, 180, 100, 30);
     wings.set(1);
-    driveForward(2.2*tileLengthMm, 585, 40, 30);
-    turnToAngle(675, 0, 100);
-    driveForward(0.42*tileLengthMm, 720, 100, 50);
-    wings.set(0);
-    driveForward(-0.32*tileLengthMm, 675, 100, 50);
-    driveForward(0.85*tileLengthMm, 720, 100, 60);
-    intakeSetState(1);
-    driveForward(-0.3*tileLengthMm, 700, 100, 80);
+    driveForward(2.5*tileLengthMm, 270, 40, 40);
+
+    // blocker.set(1);//second push with back wings
+    // driveForward(-2.5*tileLengthMm, 450, 45, 30);
+    // driveForward(0.5*tileLengthMm, 450, 45, 100);
+    // driveForward(-0.5*tileLengthMm, 450, 100, 100);
+    // blocker.set(0);
+    // wings.set(1);
+    // driveForward(2.5*tileLengthMm, 585, 40, 30);
+    // turnToAngle(675, 0, 100);
+    // driveForward(0.42*tileLengthMm, 720, 100, 50);
+    // wings.set(0);
+    // driveForward(-0.32*tileLengthMm, 675, 100, 50);
+    // driveForward(0.85*tileLengthMm, 720, 100, 60);
+    // intakeSetState(1);
+    // driveForward(-0.3*tileLengthMm, 700, 100, 80);
 
 }
