@@ -4,7 +4,7 @@
 namespace
 {
     void switchWingsState();
-    void switchBlockerState();
+    void switchBackWingsState();
     void switchHangState();
 
     int y = 1;
@@ -17,7 +17,7 @@ void keybindPneumatics()
 {
     Controller1.ButtonY.pressed(switchWingsState);
     Controller1.ButtonUp.pressed(switchHangState);
-    Controller1.ButtonX.pressed(switchBlockerState);
+    Controller1.ButtonX.pressed(switchBackWingsState);
 }
 
 namespace
@@ -49,12 +49,12 @@ namespace
         }
     }
 
-    void switchBlockerState()
+    void switchBackWingsState()
     {
         if (!blockerDebounce)
         {
             blockerDebounce = true;
-            blocker.set(!blocker.value());
+            backWings.set(!backWings.value());
 
             task::sleep(100);
             blockerDebounce = false;

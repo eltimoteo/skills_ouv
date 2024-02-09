@@ -1,5 +1,5 @@
 #include "main.h"
-#include "circularmotion.h"
+#include "puncher.h"
 #include "auto.h"
 #include "pidClass.h"
 
@@ -205,55 +205,53 @@ void resetAngle(double rotation){
 
 
 void autonomousggSkill() {
-    
+    int balls=0;
     //tim skills 3.0 (w/ new bot)
-    resetAngle(131);
-    puncherMotor.spin(forward,12, volt);
-    task::sleep(500);
-    puncherMotor.stop(coast);
-    intakeSetState(1, 7);
-    driveForward(1.33 * tileLengthMm, 180, 100, 28, 1100);
-    driveForward(-0.7 * tileLengthMm, 77.5, 100, 97);
-    driveForward(0.38*tileLengthMm, 77.5, 100, 100);
-    puncherMotor.spin(forward,12, volt);
-    //task::sleep(28000);
-    task::sleep(1000);
-    puncherMotor.stop(coast);
-    turnToAngle(131, 0, 100); 
-    driveForward(-2.21*tileLengthMm, 90, 100, 20);
-    driveForward(-1.1*tileLengthMm, 0, 90, 10);
-    //task::sleep(100);
-    //blocker.set(1);
-    driveForward(-1.52*tileLengthMm, 0, 100, 45);
-    //blocker.set(0);
-    driveForward(0.32*tileLengthMm, 45, 100, 50);
-    driveForward(-1.0*tileLengthMm, 0, 100, 60, 1000);
-
-    driveForward(0.405*tileLengthMm, 38, 100, 100);
-    driveForward(0.9 *tileLengthMm, 111, 30, 90);
-    wings.set(1);
-    driveForward(0.35*tileLengthMm, 111, 30, 90);
-    driveForward(1.3*tileLengthMm, 270, 40, 30);//first push with front wings
-    driveForward(-0.2*tileLengthMm, 270, 100, 100);
-    driveForward(0.8*tileLengthMm, 270, 100, 100);
-    wings.set(0);
-    driveForward(-1.5*tileLengthMm, 180, 100, 30);
-    wings.set(1);
-    driveForward(2.5*tileLengthMm, 270, 40, 40);
-
-    // blocker.set(1);//second push with back wings
-    // driveForward(-2.5*tileLengthMm, 450, 45, 30);
-    // driveForward(0.5*tileLengthMm, 450, 45, 100);
-    // driveForward(-0.5*tileLengthMm, 450, 100, 100);
-    // blocker.set(0);
+    // resetAngle(131);
+    // resetCatapult();
+    // intakeSetState(1,6);
+    // driveForward(1.38 * tileLengthMm, 180, 100, 28, 1100);
+    // driveForward(-0.7 * tileLengthMm, 77, 100, 97);
+    // driveForward(0.38*tileLengthMm, 77, 100, 100);
+    // PuncherMotors.spin(forward,12, volt);
+    // //task::sleep(28000);
+    PuncherMotors.stop(hold);
+    resetCatapult();
+    timer timeout;
+    
+    while(timeout<30000||balls<45) {
+        if( DS.objectDistance(mm) < 20) {
+            puncherOneRevolution();
+            balls++;
+            task::sleep(10);
+    }
+    }
+    // turnToAngle(131, 0, 100); 
+    // driveForward(-2.4 * tileLengthMm, 90, 100, 20);
+    // driveForward(-2.1 *tileLengthMm, 0, 90, 18);
+    // driveForward(0.32*tileLengthMm, 45, 100, 50);
+    // driveForward(-1.0*tileLengthMm, 0, 100, 60, 1000);
+    // driveForward(0.405*tileLengthMm, 38, 80, 100);
+    // driveForward(0.9 *tileLengthMm, 111, 30, 90);
     // wings.set(1);
-    // driveForward(2.5*tileLengthMm, 585, 40, 30);
-    // turnToAngle(675, 0, 100);
-    // driveForward(0.42*tileLengthMm, 720, 100, 50);
+    // driveForward(0.35*tileLengthMm, 111, 20, 70);
+    // driveForward(1.8*tileLengthMm, 270, 40, 30);//first push with front wings
+    // driveForward(-0.5*tileLengthMm, 270, 100, 100);
+    // driveForward(0.8*tileLengthMm, 270, 100, 100);
     // wings.set(0);
-    // driveForward(-0.32*tileLengthMm, 675, 100, 50);
-    // driveForward(0.85*tileLengthMm, 720, 100, 60);
-    // intakeSetState(1);
-    // driveForward(-0.3*tileLengthMm, 700, 100, 80);
+    // driveForward(-0.5 *tileLengthMm, 180, 80, 70);
+    // wings.set(1);
+    // driveForward(1.3*tileLengthMm, 270, 70, 60,1600);
+    //  driveForward(-0.5*tileLengthMm, 270, 100, 100);
+    // driveForward(0.8*tileLengthMm, 270, 100, 100, 1000);
+    // wings.set(0);
+    //  driveForward(-0.4*tileLengthMm, 270, 100, 100);
+    //  wings.set(1);
+    // driveForward( -2 * tileLengthMm, 408, 100, 70);
+    // wings.set(0);
+    // driveForward(-1 * tileLengthMm, 270, 100, 100);
+    // driveForward(2.1 * tileLengthMm, 360, 100, 30);
+    // driveForward(-0.4 * tileLengthMm, 360, 100, 100);
+    // driveForward(0.8 * tileLengthMm, 360, 100, 100);
 
 }

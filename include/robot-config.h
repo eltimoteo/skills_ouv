@@ -6,13 +6,13 @@ extern brain Brain;
 extern motor_group RightMotors;
 extern motor_group LeftMotors;
 extern motor IntakeMotor;
-extern motor_group CatapultMotors;
 extern controller Controller1;
 extern digital_out wings;
 extern digital_out hang;
-extern digital_out blocker;
-extern motor puncherMotor;
+extern digital_out backWings;
+extern motor_group PuncherMotors;
 extern inertial MJ;
+extern distance DS;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.

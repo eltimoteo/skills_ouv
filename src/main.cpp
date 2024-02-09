@@ -20,7 +20,6 @@
 
 #include "main.h"
 #include "botDrive.h"
-#include "circularmotion.h"
 #include "pneumatics.h"
 #include "puncher.h"
 
@@ -43,14 +42,12 @@ void pre_auton(void) {
   }
 
 
-  CatapultMotors.stop(hold);
 }
 
 bool alreadyResetCata = false;
 void autonomous(void) {
   // resetCatapult();
   // alreadyResetCata = true;
-  CatapultMotors.setStopping(hold);
   LeftMotors.setStopping(brake);
   RightMotors.setStopping(brake);
   //autonomousggFar();
@@ -59,11 +56,9 @@ void autonomous(void) {
 }
 
 void usercontrol(void) {
-  CatapultMotors.spinToPosition(10,deg,-100,rpm,false);
-  puncherMotor.setStopping(coast);
+  PuncherMotors.setStopping(coast);
   LeftMotors.setStopping(brake);
   RightMotors.setStopping(brake);
-  CatapultMotors.setStopping(hold);
  Brain.resetTimer();
   
 
