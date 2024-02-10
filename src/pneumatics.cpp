@@ -42,7 +42,8 @@ namespace
        if (!hangDebounce)
         {
             hangDebounce = true;
-            hang.set(!hang.value());
+            hang1.set(!hang1.value());
+            hang2.set(!hang2.value());
 
             task::sleep(100);
             hangDebounce = false;
