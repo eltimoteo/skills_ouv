@@ -35,13 +35,17 @@ void pre_auton(void) {
   // Initializing Robot Configuration. DO NOT REMOVE!
   //vexcodeInit();
   task::sleep(1100);
+
+  task puncherTask([] () -> int {
+    puncherThread();
+    return 1;
+  });
+
   MJ.startCalibration();
   while (MJ.isCalibrating())
   {
     task::sleep(100);
   }
-
-
 }
 
 bool alreadyResetCata = false;
@@ -59,7 +63,7 @@ void usercontrol(void) {
   PuncherMotors.setStopping(coast);
   LeftMotors.setStopping(brake);
   RightMotors.setStopping(brake);
- Brain.resetTimer();
+  Brain.resetTimer();
   
 
  

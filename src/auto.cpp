@@ -205,7 +205,6 @@ void resetAngle(double rotation){
 
 
 void autonomousggSkill() {
-    int balls=0;
     //tim skills 3.0 (w/ new bot)
     // resetAngle(131);
     // resetCatapult();
@@ -215,17 +214,16 @@ void autonomousggSkill() {
     // driveForward(0.38*tileLengthMm, 77, 100, 100);
     // PuncherMotors.spin(forward,12, volt);
     // //task::sleep(28000);
-    PuncherMotors.stop(hold);
     resetCatapult();
-    timer timeout;
+
+    // Push alliance balls
     
-    while(timeout<30000||balls<45) {
-        if( DS.objectDistance(mm) < 20) {
-            puncherOneRevolution();
-            balls++;
-            task::sleep(10);
+    timer timeout;
+    while(timeout.value() < 30 && getPunchedCount() < 45) {
+        task::sleep(10);
     }
-    }
+    setPuncherCanRun(false);
+
     // turnToAngle(131, 0, 100); 
     // driveForward(-2.4 * tileLengthMm, 90, 100, 20);
     // driveForward(-2.1 *tileLengthMm, 0, 90, 18);

@@ -1,6 +1,7 @@
 #pragma once
 
 void keybindPuncher();
-void puncherOneRevolution();
 void resetCatapult();
-void spinPuncherToAngle(double degrees);
+void puncherThread();
+int getPunchedCount();
+void setPuncherCanRun(bool canRun);
