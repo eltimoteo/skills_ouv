@@ -10,28 +10,28 @@ brain Brain;
 // VEXcode device constructors
 controller Controller1 = controller(primary);
 
-motor RightMotorsMotorA = motor(PORT19, ratio6_1, false);
-motor RightMotorsMotorB = motor(PORT12, ratio6_1, false);
-motor RightMotorsMotorC = motor(PORT11, ratio6_1, false);
+motor RightMotorsMotorA = motor(PORT20, ratio6_1, false);
+motor RightMotorsMotorB = motor(PORT19, ratio6_1, false);
+motor RightMotorsMotorC = motor(PORT18, ratio6_1, false);
 motor_group RightMotors = motor_group(RightMotorsMotorA, RightMotorsMotorB, RightMotorsMotorC);
 
-motor LeftMotorsMotorA = motor(PORT8, ratio6_1, true);
-motor LeftMotorsMotorB = motor(PORT14, ratio6_1, true);
-motor LeftMotorsMotorC = motor(PORT18, ratio6_1, true);
+motor LeftMotorsMotorA = motor(PORT17, ratio6_1, true);
+motor LeftMotorsMotorB = motor(PORT16, ratio6_1, true);
+motor LeftMotorsMotorC = motor(PORT15, ratio6_1, true);
 motor_group LeftMotors = motor_group(LeftMotorsMotorA, LeftMotorsMotorB, LeftMotorsMotorC);
 
-motor IntakeMotor = motor(PORT17, ratio6_1, false); 
+motor IntakeMotor = motor(PORT4, ratio6_1, false); 
 
-digital_out wings = digital_out(Brain.ThreeWirePort.D);
-digital_out hang1 = digital_out(Brain.ThreeWirePort.A);
-digital_out hang2 = digital_out(Brain.ThreeWirePort.B);
-digital_out backWings = digital_out(Brain.ThreeWirePort.C);
+digital_out wings = digital_out(Brain.ThreeWirePort.E);
+digital_out hang1 = digital_out(Brain.ThreeWirePort.G);
+digital_out hang2 = digital_out(Brain.ThreeWirePort.H);
+digital_out backWings = digital_out(Brain.ThreeWirePort.F);
 
 motor PuncherMotorA = motor(PORT13, ratio36_1, true);
 motor PuncherMotorB = motor(PORT21, ratio36_1);
 motor_group PuncherMotors = motor_group(PuncherMotorA, PuncherMotorB);
 
-inertial MJ = inertial(PORT1);
+inertial MJ = inertial(PORT12);
 
 distance DS = distance(PORT14);
 

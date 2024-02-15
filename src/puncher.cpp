@@ -110,7 +110,7 @@ namespace {
     }
     void spinPuncherToAngle(double degrees)
     {
-        PuncherMotors.spin(fwd, 8, volt);
+        PuncherMotors.spin(fwd, 10, volt);
         timer runTimeout;
         while (PuncherMotors.position(deg) < degrees && runTimeout.value() < 0.5)
         {

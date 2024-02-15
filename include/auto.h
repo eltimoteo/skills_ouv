@@ -2,3 +2,4 @@
 
 void autonomousggSkill();
 void test();
+void resetAngle();
