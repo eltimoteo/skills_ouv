@@ -241,85 +241,87 @@ void autonomousggSkill() {
     // driveForward(-0.4 * tileLengthMm, 360, 100, 100);
     // driveForward(0.8 * tileLengthMm, 360, 100, 100);
 
+    //-----------------------------------------------------------------------------------------
 
     //tim skills 4.0 (imaginary, prob not gonna work/heavily depends on LUCK)
-    //resetAngle(-41);
-    //task::sleep(500);
+    // resetAngle(-41);
+    // task::sleep(500);
     resetCatapult();
 
     // Push alliance balls
-    driveForward(-1.38 * tileLengthMm, 0, 100, 28, 1100);
-    driveForward(0.8 * tileLengthMm, -46, 100, 70);
-    turnToAngle(-106, 0, 100);
-    driveForward(-0.12*tileLengthMm, -107, 100, 100);
+    // driveForward(-1.38 * tileLengthMm, 0, 100, 28, 1100);
+    // driveForward(0.8 * tileLengthMm, -46, 100, 70);
+    // turnToAngle(-106, 0, 100);
+    // driveForward(-0.12*tileLengthMm, -107, 100, 100);
 
     //matchload
     // backWings.set(1);
-    // timer timeout;
-    // while(timeout.value() < 30 && getPunchedCount() < 45){
-    //     task::sleep(10);
-    // }
+    timer timeout;
+    while(timeout.value() < 25){
+        task::sleep(50);
+    }
     setPuncherCanRun(false);
     // backWings.set(0);
 
     //centre balls
-    driveForward(2.2 * tileLengthMm, -110, 100, 100);
-    //wings.set(1);
-    //turnToAngle(-167, 'L', 100);
-    driveForward(0.4 * tileLengthMm, -167, 100, 100);
-    driveForward(2 * tileLengthMm, -168, 100, 60, 1200);
-    //wings.set(0);
-    driveForward(-0.3 * tileLengthMm, -180, 100, 100);
-    task::sleep(100);
-    driveForward(0.525 * tileLengthMm, -180, 100, 100);
-    driveForward(-0.315 * tileLengthMm, -180, 100, 100);
-    turnToAngle(-245, 0, 100);
-    driveForward(0.58 * tileLengthMm, -250, 100, 100);
-    driveForward(3 * tileLengthMm, -90, 90, 55);
-    
-    driveForward(2.1 * tileLengthMm, -75, 90, 20);
-    task::sleep(50);
-    //wings.set(1);//unsure
-    //turnToAngle(-45, 'R', 100);//unsure
-    //wings.set(0);//unsure
-    driveForward(1.3 * tileLengthMm, 0, 60, 40, 1100);
-    driveForward(-0.25 * tileLengthMm, -46.5, 60, 55);
-    turnToAngle(-90, 0, 100);
-    driveForward(-0.5 * tileLengthMm, -90, 100, 100);
-    backWings.set(1);
-    driveForward(-1.6 * tileLengthMm, -270, 80, 30);
-    backWings.set(0);
-    driveForward(1.1 * tileLengthMm, -250, 100, 100);
-    driveForward(1.3 * tileLengthMm, -450, 80, 30);
-    wings.set(1);
-    driveForward(1.5 * tileLengthMm, -450, 100, 100);
+    // driveForward(2.1 * tileLengthMm, -109, 100, 100);
+    // //wings.set(1);
+    // //turnToAngle(-167, 'L', 100);
+    // driveForward(0.5 * tileLengthMm, -165, 100, 75);
+    // driveForward(1.85 * tileLengthMm, -168, 100, 60, 1200);
+    // //wings.set(0);
+    // driveForward(-0.15 * tileLengthMm, -180, 100, 100);
     // task::sleep(100);
-    // backWings.set(1);
-    // driveForward(-1.85 * tileLengthMm, -90, 70, 100);
-    // turnToAngle(-180, 'R', 100);
-    // driveForward(-1 * tileLengthMm, -180, 70, 100);
-    // turnToAngle(-270, 0, 100);
-    // driveForward(-1.5 * tileLengthMm, -270, 90, 100);
-    // backWings.set(0);
+    // driveForward(0.7 * tileLengthMm, -177, 100, 100, 800);
+    // driveForward(-0.32 * tileLengthMm, -180, 100, 100);
+    // turnToAngle(-242, 0, 100);
+    // driveForward(0.58 * tileLengthMm, -250, 100, 100);
+    // driveForward(3 * tileLengthMm, -90, 90, 64);
+    
+    // //left
+    // driveForward(2 * tileLengthMm, -75, 90, 20);
+    // task::sleep(20);
+    // //wings.set(1);//unsure
+    // //turnToAngle(-45, 'R', 100);//unsure
+    // //wings.set(0);//unsure
+    // driveForward(1.7 * tileLengthMm, 0, 60, 16, 1250);
+    // driveForward(-0.55 * tileLengthMm, 0, 100, 100);
+    // driveForward(0.62 * tileLengthMm, 0, 100, 100, 1250);
+    // driveForward(-0.37 * tileLengthMm, -46.5, 60, 55);
 
+    // //mid
+    // turnToAngle(-90, 0, 100);
+    // driveForward(-0.5 * tileLengthMm, -90, 100, 100);
+    // backWings.set(1);
+    // driveForward(-1.6 * tileLengthMm, -270, 80, 70);
+    // backWings.set(0);
+    // driveForward(1.2 * tileLengthMm, -225, 100, 100);
+    // turnToAngle(-180, 'R', 100);
     
     // backWings.set(1);
-    // driveForward(-1.7 * tileLengthMm, -123, 100, 70);
-    // turnToAngle(-228, 0, 100);
-    // driveForward(-1.3 * tileLengthMm, -250, 100, 60);
+    // //driveForward(-1 * tileLengthMm, -380, 80, 10);
+    // driveForward(-1.65 * tileLengthMm, -270, 100, 50);
     // backWings.set(0);
+    // task::sleep(50);
 
+    // //pre-right
+    // wings.set(1);
+    // driveForward(0.9 * tileLengthMm, -400, 100, 70);
+    // driveForward(1.7 * tileLengthMm, -392, 80, 100);
+    // wings.set(0);
 
-    // driveForward(2.1 * tileLengthMm, -360, 80, 40);
-    // driveForward(2 * tileLengthMm, -360, 100, 100);
-    // turnToAngle(-320, 0, 100);
-    // backWings.set(1);
-    // driveForward(-1.5 * tileLengthMm, -318, 100, 70);
-    // backWings.set(0);
-    // driveForward(2.1 * tileLengthMm, -180, 80, 40);
-    // turnToAngle(-270, 0, 100);
-    // backWings.set(1);
-    // driveForward(-1.5 * tileLengthMm, -270, 100, 100);
-    // backWings.set(0);
-    // driveForward(4.5 * tileLengthMm, -405, 90, 50);
+    // //turnToAngle(-495, 'L', 100);
+    // driveForward(0.5 * tileLengthMm, -495, 100, 65);
+    // driveForward(1.15 * tileLengthMm, -540, 85, 16, 1100);
+    // driveForward(-0.55 * tileLengthMm, -540, 100, 100);
+    // driveForward(0.62 * tileLengthMm, -537, 100, 97, 1250);
+    // driveForward(-0.37 * tileLengthMm, -450, 60, 55);
+
+    // //hang
+    // turnToAngle(-690, 0, 100);
+    // hang1.set(1);
+    // hang2.set(1);
+    // driveForward(2.65 * tileLengthMm, -630, 100, 30);
+    // hang1.set(0);
+    // hang2.set(0);
 }

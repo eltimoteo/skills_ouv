@@ -89,7 +89,7 @@ namespace {
         // Spin catapult to bottom
         PuncherMotors.setMaxTorque(100, pct);
         PuncherMotors.resetPosition();
-        spinPuncherToAngle(360.0 * (7.0 / 36.0));
+        spinPuncherToAngle(360.0 * (6.0 / 36.0));
         PuncherMotors.stop(hold);
         PuncherMotors.resetPosition();
 
@@ -110,7 +110,7 @@ namespace {
     }
     void spinPuncherToAngle(double degrees)
     {
-        PuncherMotors.spin(fwd, 10, volt);
+        PuncherMotors.spin(fwd, 11, volt);
         timer runTimeout;
         while (PuncherMotors.position(deg) < degrees && runTimeout.value() < 0.5)
         {

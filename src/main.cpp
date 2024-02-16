@@ -34,7 +34,6 @@ int count = 0;
 void pre_auton(void) {
   // Initializing Robot Configuration. DO NOT REMOVE!
   //vexcodeInit();
-  resetAngle(-41);
   task::sleep(1100);
 
   task puncherTask([] () -> int {
