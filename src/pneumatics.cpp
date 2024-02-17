@@ -16,8 +16,8 @@ namespace
 void keybindPneumatics()
 {
     Controller1.ButtonY.pressed(switchWingsState);
-    Controller1.ButtonUp.pressed(switchHangState);
-    Controller1.ButtonX.pressed(switchBackWingsState);
+    Controller1.ButtonR2.pressed(switchHangState);
+    Controller1.ButtonB.pressed(switchBackWingsState);
 }
 
 namespace
@@ -42,8 +42,7 @@ namespace
        if (!hangDebounce)
         {
             hangDebounce = true;
-            hang1.set(!hang1.value());
-            hang2.set(!hang2.value());
+            hang.set(!hang.value());
 
             task::sleep(100);
             hangDebounce = false;
@@ -55,7 +54,8 @@ namespace
         if (!blockerDebounce)
         {
             blockerDebounce = true;
-            backWings.set(!backWings.value());
+            backWingR.set(!backWingR.value());
+            backWingL.set(!backWingL.value());
 
             task::sleep(100);
             blockerDebounce = false;

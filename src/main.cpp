@@ -64,7 +64,7 @@ void usercontrol(void) {
   LeftMotors.setStopping(brake);
   RightMotors.setStopping(brake);
   Brain.resetTimer();
-  
+  resetCatapult();
 
  
   keybindPneumatics();
@@ -72,29 +72,25 @@ void usercontrol(void) {
 
   while (true) {
     ggDriver();
-    if(Controller1.ButtonR2.pressing()){
-      IntakeMotor.spin(forward, 100, pct);
-    }
-    else if(Controller1.ButtonR1.pressing()){
-      IntakeMotor.spin(reverse, 100, pct);
-    }
-    else {
-      IntakeMotor.stop(hold);
-    }
+    // if(Controller1.ButtonR2.pressing()){
+    //   IntakeMotor.spin(forward, 100, pct);
+    // }
+    // else if(Controller1.ButtonR1.pressing()){
+    //   IntakeMotor.spin(reverse, 100, pct);
+    // }
+    // else {
+    //   IntakeMotor.stop(hold);
+    // }
     
   }
 }
 
 int main() {
-  //group 15 is the angrybird.io
-  //group 13 is dy left
-  //group 11 is dy right
-
-  Competition.autonomous(autonomous);
-  Competition.drivercontrol(usercontrol);
 
   pre_auton();
-
+  Competition.autonomous(autonomous);
+  Competition.drivercontrol(usercontrol);
+  
   while(1){
     task::sleep(100);
   } 

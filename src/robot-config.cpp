@@ -23,9 +23,9 @@ motor_group LeftMotors = motor_group(LeftMotorsMotorA, LeftMotorsMotorB, LeftMot
 motor IntakeMotor = motor(PORT4, ratio6_1, false); 
 
 digital_out wings = digital_out(Brain.ThreeWirePort.E);
-digital_out hang1 = digital_out(Brain.ThreeWirePort.G);
-digital_out hang2 = digital_out(Brain.ThreeWirePort.H);
-digital_out backWings = digital_out(Brain.ThreeWirePort.F);
+digital_out backWingR = digital_out(Brain.ThreeWirePort.G);
+digital_out hang = digital_out(Brain.ThreeWirePort.H);
+digital_out backWingL = digital_out(Brain.ThreeWirePort.F);
 
 motor PuncherMotorA = motor(PORT13, ratio36_1, true);
 motor PuncherMotorB = motor(PORT21, ratio36_1);

@@ -42,7 +42,7 @@ void puncherThread() {
     // Detect balls
     punchedCount = 0;
     while (true) {
-        if(isPuncherResetted && canPuncherRun && DS.objectDistance(mm) < 20) {
+        if(isPuncherResetted && canPuncherRun && DS.objectDistance(mm) < 27 ){
             puncherOneRevolution();
             punchedCount++;
         }
