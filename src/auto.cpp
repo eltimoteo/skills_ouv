@@ -241,7 +241,7 @@ void autonomousggSkill() {
     // driveForward(-0.4 * tileLengthMm, 360, 100, 100);
     // driveForward(0.8 * tileLengthMm, 360, 100, 100);
 
-    //-----------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------
 
     //tim skills 4.0 (imaginary, prob not gonna work/heavily depends on LUCK)
     resetAngle(-41);
@@ -250,31 +250,31 @@ void autonomousggSkill() {
 
     // Push alliance balls
     driveForward(-1.38 * tileLengthMm, 0, 100, 28, 1100);
-    driveForward(0.6 * tileLengthMm, -46, 100, 70);
+    driveForward(0.5 * tileLengthMm, -46, 100, 75);
     turnToAngle(-106, 0, 100);
-    driveForward(-0.14*tileLengthMm, -106, 100, 100);
+    driveForward(-0.1*tileLengthMm, -106, 100, 100);
 
     //matchload
     backWingR.set(1);
     timer timeout;
-    while(timeout.value() < 25){
+    while(timeout.value() < 25 && getPunchedCount() < 44){
         task::sleep(50);
     }
     setPuncherCanRun(false);
     backWingR.set(0);
     
     //centre balls
-    driveForward(2.1 * tileLengthMm, -110, 100, 100);
+    driveForward(2.1 * tileLengthMm, -105, 100, 100);
     //wings.set(1);
     //turnToAngle(-167, 'L', 100);
     driveForward(0.5 * tileLengthMm, -165, 100, 75);
     wings.set(1);
     driveForward(1.85 * tileLengthMm, -168, 100, 60, 1200);
     //wings.set(0);
-    driveForward(-0.15 * tileLengthMm, -180, 100, 100);
+    driveForward(-0.15 * tileLengthMm, -173, 100, 100);
     task::sleep(100);
-    driveForward(0.7 * tileLengthMm, -177, 100, 100, 800);
-    driveForward(-0.32 * tileLengthMm, -180, 100, 100);
+    driveForward(0.8 * tileLengthMm, -177, 100, 100, 800);
+    driveForward(-0.17 * tileLengthMm, -182, 100, 100);
     wings.set(0);
     turnToAngle(-242, 0, 100);
     driveForward(0.58 * tileLengthMm, -250, 100, 100);
@@ -288,35 +288,59 @@ void autonomousggSkill() {
     //wings.set(0);//unsure
     driveForward(1.7 * tileLengthMm, 0, 60, 16, 1250);
     driveForward(-0.55 * tileLengthMm, 0, 100, 100);
+    task::sleep(50);
     driveForward(0.62 * tileLengthMm, 0, 100, 100, 1250);
-    driveForward(-0.37 * tileLengthMm, -46.5, 60, 55);
+    driveForward(-0.2 * tileLengthMm, -46.5, 60, 55);
 
     //mid
     turnToAngle(-90, 0, 100);
     driveForward(-0.5 * tileLengthMm, -90, 100, 100);
-    //--backWings.set(1);
-    driveForward(-1.6 * tileLengthMm, -270, 80, 70);
-    //--backWings.set(0);
-    driveForward(1.2 * tileLengthMm, -225, 100, 100);
+    backWingR.set(1);
+    //backWingL.set(1);
+    driveForward(-1.3 * tileLengthMm, -180, 80, 20);
+    backWingL.set(1);
+    backWingR.set(0);
+    task::sleep(100);
+    driveForward(-1.4 * tileLengthMm, -270, 80, 80);
+    backWingL.set(0);
+    //backWingL.set(0);
+    driveForward(0.9 * tileLengthMm, -270, 100, 100);
     turnToAngle(-180, 'R', 100);
     
-    //--backWings.set(1);
+    backWingR.set(1);
+    backWingL.set(1);
+    task::sleep(100);
     //driveForward(-1 * tileLengthMm, -380, 80, 10);
-    driveForward(-1.55 * tileLengthMm, -270, 100, 50);
-    driveForward(0.5 * tileLengthMm, -270, 100, 100);
-    driveForward(-0.6 * tileLengthMm, -270, 100, 100);
-    //--backWings.set(0);
+    driveForward(-1.45 * tileLengthMm, -270, 100, 30);
+    backWingR.set(0);
+    backWingL.set(0);
+    driveForward(0.5 * tileLengthMm, -180, 100, 100);
+    driveForward(-1.2 * tileLengthMm, -180, 80, 100);
+    turnToAngle(-315, 0, 100);
+    backWingR.set(1);
+    backWingL.set(1);
+    task::sleep(100);
+    driveForward(-1.3 * tileLengthMm, -270, 100, 46);
+    driveForward(0.1 * tileLengthMm, -270, 100, 100);
+    driveForward(-0.16 * tileLengthMm, -270, 100, 100);
+    backWingR.set(0);
+    backWingL.set(0);
     task::sleep(100);
 
     //pre-right
     wings.set(1);
-    driveForward(0.9 * tileLengthMm, -400, 100, 70);
-    driveForward(1.7 * tileLengthMm, -392, 80, 100);
+    driveForward(1.75 * tileLengthMm, -450, 100, 56);
+    //driveForward(1.5 * tileLengthMm, -392, 80, 100);
     wings.set(0);
 
+    //right
     //turnToAngle(-495, 'L', 100);
+    task::sleep(100);
+    turnToAngle(-370, 0, 100);
+    wings.set(1);
     driveForward(0.5 * tileLengthMm, -495, 100, 65);
-    driveForward(1.15 * tileLengthMm, -540, 85, 16, 1100);
+    wings.set(0);
+    driveForward(1.15 * tileLengthMm, -540, 85, 10, 1100);
     driveForward(-0.55 * tileLengthMm, -540, 100, 100);
     driveForward(0.62 * tileLengthMm, -537, 100, 97, 1250);
     driveForward(-0.37 * tileLengthMm, -450, 60, 55);
@@ -324,6 +348,6 @@ void autonomousggSkill() {
     //hang
     turnToAngle(-690, 0, 100);
     hang.set(1);
-    driveForward(2.7 * tileLengthMm, -630, 80, 30);
+    driveForward(3 * tileLengthMm, -630, 100, 35);
     hang.set(0);
 }

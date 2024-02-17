@@ -42,7 +42,7 @@ void puncherThread() {
     // Detect balls
     punchedCount = 0;
     while (true) {
-        if(isPuncherResetted && canPuncherRun && DS.objectDistance(mm) < 27 ){
+        if(isPuncherResetted && canPuncherRun && DS.objectDistance(mm) < 40 ){
             puncherOneRevolution();
             punchedCount++;
         }
@@ -110,7 +110,7 @@ namespace {
     }
     void spinPuncherToAngle(double degrees)
     {
-        PuncherMotors.spin(fwd, 11, volt);
+        PuncherMotors.spin(fwd, 9, volt);
         timer runTimeout;
         while (PuncherMotors.position(deg) < degrees && runTimeout.value() < 0.5)
         {
